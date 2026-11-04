@@ -10,7 +10,7 @@ public class Loan {
     private LocalDate borrowDate;
     private LocalDate returnDate;
 
-    public Loan(int idLoan, Reader reader, BookCopy bookCopy, LocalDate borrowDate, LocalDate returnDate) {
+    public Loan(int idLoan, Reader reader, BookCopy bookCopy, LocalDate borrowDate) {
 
         if (reader == null) {
             throw new IllegalArgumentException("Reader cannot be null");
