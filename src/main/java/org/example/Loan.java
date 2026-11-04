@@ -1,35 +1,54 @@
 package org.example;
-
+import java.time.LocalDate;
+//BookCopy+Reader
 public class Loan {
 
-    private int idBookCopy;
-    private Book book;
-    private boolean available;
+    private int idLoan;
+    private Reader reader;
+    private BookCopy bookCopy;
+    private LocalDate borrowDate;
 
-    public Loan(int idBookCopy, Book book, boolean available) {
+    public Loan(int idLoan, Reader reader, BookCopy bookCopy, LocalDate borrowDate) {
 
-        if (book == null) {
-            throw new IllegalArgumentException("Book cannot be null");
+        if (reader == null) {
+            throw new IllegalArgumentException("Reader cannot be null");
         }
 
-        this.idBookCopy = idBookCopy;
-        this.book = book;
-        this.available = available;
+        if (bookCopy == null) {
+            throw new IllegalArgumentException("BookCopy cannot be null");
+        }
+
+        if (borrowDate == null) {
+            throw new IllegalArgumentException("Borrow date cannot be null");
+        }
+
+        this.idLoan = idLoan;
+        this.reader = reader;
+        this.bookCopy = bookCopy;
+        this.borrowDate = borrowDate;
     }
 
-    public int getIdBookCopy() {return idBookCopy;}
+    public int getIdLoan() {return idLoan;}
 
-    public Book getBook() {return book;}
+    public Reader getReader() {return reader;}
 
-    public boolean isAvailable() {return available;}
-    public void setAvailable(boolean available) {this.available = available;}
+    public BookCopy getBookCopy() {return bookCopy;}
+
+    public LocalDate getBorrowDate() {return borrowDate;}
+    public void setBorrowDate(LocalDate borrowDate) {
+        if (borrowDate == null) {
+            throw new IllegalArgumentException("Borrow date cannot be null");
+        }
+        this.borrowDate = borrowDate;
+    }
 
     @Override
     public String toString() {
-        return "BookCopy{" +
-                "idBookCopy=" + idBookCopy +
-                ", book=" + book.getName() +
-                ", available=" + available +
+        return "Loan{" +
+                "idLoan=" + idLoan +
+                ", reader=" + reader.getFirstName() + " " + reader.getLastName() +
+                ", bookCopy=" + bookCopy.getBook().getName() +
+                ", borrowDate=" + borrowDate +
                 '}';
     }
 }
