@@ -3,8 +3,8 @@ package org.example;
 import java.util.Scanner;
 
 /*
- Punkt startowy aplikacji. Tworzy obiekty i uruchamia interfejs;
- nie zawiera żadnej logiki (Low Coupling, High Cohesion)
+ Application entry point. Creates the objects and starts the interface;
+ contains no logic (Low Coupling, High Cohesion)
  */
 public class Main {
 

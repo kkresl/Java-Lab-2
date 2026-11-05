@@ -2,8 +2,8 @@ package org.example;
 
 import java.time.LocalDate;
 
-//BookCopy+Reader
-//Информация о выдаче книги
+// BookCopy + Reader
+// Information about a book loan
 public class Loan {
 
     private final int idLoan;

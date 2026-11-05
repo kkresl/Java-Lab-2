@@ -2,17 +2,17 @@ package org.example;
 
 import java.util.Scanner;
 
-/**
- Konsolowy interfejs użytkownika
+/*
+ Console user interface
 
  GRASP:
 
- Pure Fabrication - klasa nie istnieje w dziedzinie biblioteki; powstała, aby
- oddzielić obsługę konsoli (Scanner, System.out) od logiki
- Controller - przyjmuje polecenia użytkownika i deleguje je do Library
- High Cohesion - jedyna odpowiedzialność: komunikacja z użytkownikiem
- Low Coupling - UI zna tylko Library; Library nie zna UI
- Scanner jest wstrzykiwany przez konstruktor (Dependency Injection)
+ Pure Fabrication the class does not exist in the library domain; it was created
+ to separate console handling (Scanner, System.out) from the logic
+ Controller receives user commands and delegates them to Library
+ High Cohesion its only responsibility is communication with the user
+ Low Coupling the UI knows only Library; Library does not know the UI
+ Scanner is injected through the constructor (Dependency Injection)
 
  */
 public class ConsoleUI {
@@ -25,7 +25,7 @@ public class ConsoleUI {
         this.scanner = scanner;
     }
 
-    //Główna pętla programu
+    // Main program loop
     public void run() {
         boolean running = true;
 
@@ -41,7 +41,7 @@ public class ConsoleUI {
         }
     }
 
-    //Zwraca false, gdy użytkownik wybrał wyjście
+    // Returns false when the user chose to exit
     private boolean handleChoice(int choice) {
         switch (choice) {
             case 1:
@@ -152,6 +152,7 @@ public class ConsoleUI {
     }
 
     //Pyta do skutku, aż użytkownik poda liczbę (zamiast wyjątku NumberFormatException)
+    // Asks repeatedly until the user enters a number (instead of throwing NumberFormatException)
     private int readInt(String prompt) {
         while (true) {
             try {

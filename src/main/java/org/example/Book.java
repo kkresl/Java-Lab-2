@@ -9,7 +9,7 @@ public class Book {
 
     public Book(int idBook, String name, String author) {
 
-        // isBlank() - ялвяется ли строка пустой и есть ли пробелы
+        // isBlank() - checks whether the string is empty or contains only whitespace
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Book name cannot be empty");
         }
@@ -33,7 +33,7 @@ public class Book {
         }
         this.name = name;
     }
-    //zmienia nazwe produktu po stworzeniu
+    // changes the book name after creation
 
     public String getAuthor() {
         return author;

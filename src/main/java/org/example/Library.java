@@ -23,9 +23,9 @@ public class Library {
             throw new IllegalArgumentException("Book cannot be null");
         }
 
-        // проверка на дубликат
-        // books - весь список книг, existingBoo-текущая книга
-        // equals-сравнение(проверка на дубликат)
+        // duplicate check
+        // books - the whole list of books, existingBook - the current book
+        // equals - comparison (duplicate check)
         for (Book existingBook : books) {
 
             if (existingBook.getIdBook() == book.getIdBook()) {
@@ -63,6 +63,7 @@ public class Library {
         for (Book book : books) {
             System.out.println(book);
             // book-временная переменная, books-список книг
+            // book - temporary variable, books - the list of books
         }
     }
 
@@ -86,12 +87,14 @@ public class Library {
     }
 
     // выдача книги
+    // issuing a book
     public void borrowBook(int loanId, int readerId, int bookCopyId) {
 
         Reader selectedReader = null;
         BookCopy selectedCopy = null;
 
         // Ищем читателя
+        // Searching for the reader
         for (Reader reader : readers) {
             if (reader.getIdReader() == readerId) {
                 selectedReader = reader;
@@ -100,6 +103,7 @@ public class Library {
         }
 
         // Ищем экземпляр
+        // Searching for the book copy
         for (BookCopy copy : bookCopies) {
             if (copy.getIdBookCopy() == bookCopyId) {
                 selectedCopy = copy;
@@ -108,21 +112,25 @@ public class Library {
         }
 
         // Проверяем читателя
+        // Checking the reader
         if (selectedReader == null) {
             throw new IllegalArgumentException("Reader not found");
         }
 
         // Проверяем экземпляр
+        // Checking the book copy
         if (selectedCopy == null) {
             throw new IllegalArgumentException("Book copy not found");
         }
 
         // Проверяем доступность
+        // Checking availability
         if (!selectedCopy.isAvailable()) {
             throw new IllegalArgumentException("Book is not available");
         }
 
         // проверяем loan id
+        // checking loan id
         for (Loan existingLoan : loans) {
             if (existingLoan.getIdLoan() == loanId) {
                 throw new IllegalArgumentException("Loan ID already exists");
@@ -130,6 +138,7 @@ public class Library {
         }
 
         // Создаём выдачу
+        // Creating the loan
         Loan loan = new Loan(
                 loanId,
                 selectedReader,
@@ -140,6 +149,7 @@ public class Library {
         loans.add(loan);
 
         // Помечаем экземпляр как занятый
+        // Marking the copy as unavailable
         selectedCopy.setAvailable(false);
     }
 
@@ -181,9 +191,11 @@ public class Library {
     }
 
     // Показываем книги, которые сейчас находятся у читателя
+    // Displaying books currently held by the reader
     public void assignedUserBooks(String lastName) {
 
         // Проверяем, существует ли читатель с такой фамилией
+        // Checking if a reader with this last name exists
         Reader selectedReader = null;
 
         for (Reader reader : readers) {
@@ -200,10 +212,13 @@ public class Library {
         boolean found = false;
 
         // Перебираем все выдачи
+        // Iterating through all loans
         for (Loan loan : loans) {
 
             // Проверяем, принадлежит ли выдача найденному читателю
             // и не была ли книга возвращена
+            // Checking if the loan belongs to the found reader
+            // and if the book has not been returned yet
             if (loan.getReader().getIdReader() == selectedReader.getIdReader()
                     && loan.getReturnDate() == null) {
 
@@ -222,4 +237,3 @@ public class Library {
     }
 
 }
-
