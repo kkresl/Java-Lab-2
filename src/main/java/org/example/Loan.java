@@ -50,6 +50,7 @@ public class Loan {
         this.returnDate = returnDate;
     }
 
+
     @Override
     public String toString() {
         return "Loan{" +
