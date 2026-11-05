@@ -181,13 +181,13 @@ public class Library {
     }
 
     // Показываем книги, которые сейчас находятся у читателя
-    public void assignedUserBooks(int readerId) {
+    public void assignedUserBooks(String lastName) {
 
-        // Проверяем, существует ли читатель
+        // Проверяем, существует ли читатель с такой фамилией
         Reader selectedReader = null;
 
         for (Reader reader : readers) {
-            if (reader.getIdReader() == readerId) {
+            if (reader.getLastName().equalsIgnoreCase(lastName)) {
                 selectedReader = reader;
                 break;
             }
@@ -202,9 +202,9 @@ public class Library {
         // Перебираем все выдачи
         for (Loan loan : loans) {
 
-            // Проверяем, принадлежит ли выдача этому читателю
+            // Проверяем, принадлежит ли выдача найденному читателю
             // и не была ли книга возвращена
-            if (loan.getReader().getIdReader() == readerId
+            if (loan.getReader().getIdReader() == selectedReader.getIdReader()
                     && loan.getReturnDate() == null) {
 
                 System.out.println(

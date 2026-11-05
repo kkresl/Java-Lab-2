@@ -36,8 +36,7 @@ class LibraryIntegrationTest {
         library.addBookCopy(102, 1);
         library.addBookCopy(201, 2);
 
-        // Проверяем работу сеттеров и геттеров.
-        // Сначала меняем значения, затем проверяем, что они сохранились
+        // Проверяем работу сеттеров и геттеров
         harryPotter.setName("Harry Potter and the Philosopher's Stone");
         reader1.setFirstName("Anne");
         reader1.setLastName("Smyth");
@@ -52,7 +51,7 @@ class LibraryIntegrationTest {
         library.borrowBook(1001, 1, 101);
         library.borrowBook(1002, 2, 201);
 
-        // Попытка выдать уже занятую книгу должна закончиться ошибкой
+        // Попытка выдать уже занятый экземпляр должна закончиться ошибкой
         assertThrows(IllegalArgumentException.class,
                 () -> library.borrowBook(1003, 2, 101));
 
@@ -76,7 +75,7 @@ class LibraryIntegrationTest {
         assertThrows(IllegalArgumentException.class,
                 () -> library.addBookCopy(999, 999));
 
-        // Проверяем, что ID выдачи тоже должен быть уникальным
+        // Проверяем, что ID выдачи должен быть уникальным
         assertThrows(IllegalArgumentException.class,
                 () -> library.borrowBook(1001, 1, 102));
 
@@ -88,28 +87,29 @@ class LibraryIntegrationTest {
         assertThrows(IllegalArgumentException.class,
                 () -> library.borrowBook(1004, 1, 999));
 
-        // Проверяем, какие книги были выданы конкретному читателю.
-        // Для этого временно перенаправляем вывод консоли в отдельный объект
+        // Проверяем поиск книг по фамилии читателя
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
 
         try {
             System.setOut(new PrintStream(output));
 
-            // Получаем список книг, которые взял читатель с ID 1
-            library.assignedUserBooks(1);
+            // Получаем список книг, которые взял читатель с фамилией Smyth
+            library.assignedUserBooks("Smyth");
 
         } finally {
-            // После проверки возвращаем обычный вывод в консоль
+            // Возвращаем обычный вывод в консоль
             System.setOut(originalOut);
         }
 
         // Проверяем, что в результате присутствует нужный экземпляр
         assertTrue(output.toString().contains("Copy ID: 101"));
 
-        // Также проверяем название выданной книги
-        assertTrue(output.toString().contains(
-                "Harry Potter and the Philosopher's Stone"));
+        // Проверяем название выданной книги
+        assertTrue(output.toString().contains("Harry Potter and the Philosopher's Stone"));
+
+        // Проверяем, что поиск не зависит от регистра букв
+        assertDoesNotThrow(() -> library.assignedUserBooks("sMYTH"));
 
         // Возвращаем книгу с ID выдачи 1001
         library.returnBook(1001);
@@ -125,11 +125,12 @@ class LibraryIntegrationTest {
         assertThrows(IllegalArgumentException.class,
                 () -> library.returnBook(9999));
 
-        // Проверяем запрос книг для несуществующего читателя
+        // Проверяем запрос книг по фамилии несуществующего читателя
         assertThrows(IllegalArgumentException.class,
-                () -> library.assignedUserBooks(999));
+                () -> library.assignedUserBooks("Unknown"));
 
-        // Проверяем конструкторы классов на некорректные данные.
+        // Проверяем конструкторы классов на некорректные данные
+
         // Название книги не должно быть пустым
         assertThrows(IllegalArgumentException.class,
                 () -> new Book(10, " ", "Author"));
@@ -183,8 +184,7 @@ class LibraryIntegrationTest {
         assertThrows(IllegalArgumentException.class,
                 () -> loan.setBorrowDate(null));
 
-        // В конце проверяем методы отображения информации.
-        // Они должны выполняться без возникновения исключений
+        // Проверяем методы отображения информации
         assertDoesNotThrow(library::displayBooks);
         assertDoesNotThrow(library::displayBookCopies);
         assertDoesNotThrow(library::displayReaders);

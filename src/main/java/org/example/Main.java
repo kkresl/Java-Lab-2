@@ -13,7 +13,7 @@ public class Main {
 
         while (running) {
 
-            System.out.println("\n----- LIBRARY / BIBLIOTEKA -----");
+            System.out.println("\n----- LIBRARY -----");
             System.out.println("1. Add book / Dodaj książkę");
             System.out.println("2. Add reader / Dodaj czytelnika");
             System.out.println("3. Add book copy / Dodaj egzemplarz książki");
@@ -121,10 +121,10 @@ public class Main {
                         break;
 
                     case 10:
-                        System.out.print("Enter reader ID: ");
-                        int readerId2 = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Last name: ");
+                        String lastname = scanner.nextLine();
 
-                        library.assignedUserBooks(readerId2);
+                        library.assignedUserBooks(lastname);
                         break;
 
                     case 0:
