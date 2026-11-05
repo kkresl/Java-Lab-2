@@ -1,12 +1,14 @@
 package org.example;
+
 import java.time.LocalDate;
+
 //BookCopy+Reader
 //Информация о выдаче книги
 public class Loan {
 
-    private int idLoan;
-    private Reader reader;
-    private BookCopy bookCopy;
+    private final int idLoan;
+    private final Reader reader;
+    private final BookCopy bookCopy;
     private LocalDate borrowDate;
     private LocalDate returnDate;
 
@@ -31,13 +33,22 @@ public class Loan {
         this.returnDate = null;
     }
 
-    public int getIdLoan() {return idLoan;}
+    public int getIdLoan() {
+        return idLoan;
+    }
 
-    public Reader getReader() {return reader;}
+    public Reader getReader() {
+        return reader;
+    }
 
-    public BookCopy getBookCopy() {return bookCopy;}
+    public BookCopy getBookCopy() {
+        return bookCopy;
+    }
 
-    public LocalDate getBorrowDate() {return borrowDate;}
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
     public void setBorrowDate(LocalDate borrowDate) {
         if (borrowDate == null) {
             throw new IllegalArgumentException("Borrow date cannot be null");
@@ -45,7 +56,10 @@ public class Loan {
         this.borrowDate = borrowDate;
     }
 
-    public LocalDate getReturnDate() {return returnDate;}
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
     public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }

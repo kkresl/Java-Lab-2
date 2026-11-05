@@ -2,8 +2,8 @@ package org.example;
 
 public class BookCopy {
 
-    private int idBookCopy;
-    private Book book;
+    private final int idBookCopy;
+    private final Book book;
     private boolean available;
 
     public BookCopy(int idBookCopy, Book book, boolean available) {
@@ -17,12 +17,21 @@ public class BookCopy {
         this.available = available;
     }
 
-    public int getIdBookCopy() {return idBookCopy;}
+    public int getIdBookCopy() {
+        return idBookCopy;
+    }
 
-    public Book getBook() {return book;}
+    public Book getBook() {
+        return book;
+    }
 
-    public boolean isAvailable() {return available;}
-    public void setAvailable(boolean available) {this.available = available;}
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     @Override
     public String toString() {

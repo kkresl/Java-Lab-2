@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         Library library = new Library();
@@ -13,18 +13,18 @@ public class Main {
 
         while (running) {
 
-            System.out.println("\n===== LIBRARY =====");
-            System.out.println("1. Add book");
-            System.out.println("2. Add reader");
-            System.out.println("3. Add book copy");
-            System.out.println("4. Borrow book");
-            System.out.println("5. Return book");
-            System.out.println("6. Display books");
-            System.out.println("7. Display book copies");
-            System.out.println("8. Display readers");
-            System.out.println("9. Display loans");
-            System.out.println("10. books assigned to a user");
-            System.out.println("0. Exit");
+            System.out.println("\n----- LIBRARY / BIBLIOTEKA -----");
+            System.out.println("1. Add book / Dodaj książkę");
+            System.out.println("2. Add reader / Dodaj czytelnika");
+            System.out.println("3. Add book copy / Dodaj egzemplarz książki");
+            System.out.println("4. Borrow book / Wypożycz książkę");
+            System.out.println("5. Return book / Zwróć książkę");
+            System.out.println("6. Display books / Wyświetl książki");
+            System.out.println("7. Display book copies / Wyświetl egzemplarze książek");
+            System.out.println("8. Display readers / Wyświetl czytelników");
+            System.out.println("9. Display loans / Wyświetl wypożyczenia");
+            System.out.println("10. Books assigned to a user / Książki wypożyczone przez czytelnika");
+            System.out.println("0. Exit / Wyjście");
 
             System.out.print("Choose option: ");
 

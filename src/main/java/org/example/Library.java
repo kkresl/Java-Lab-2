@@ -1,14 +1,15 @@
 package org.example;
-import java.util.List;
-import java.util.ArrayList;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Library {
 
-    private List<Book> books;
-    private List<BookCopy> bookCopies;
-    private List<Reader> readers;
-    private List<Loan> loans;
+    private final List<Book> books;
+    private final List<BookCopy> bookCopies;
+    private final List<Reader> readers;
+    private final List<Loan> loans;
 
     public Library() {
         books = new ArrayList<>();
@@ -17,8 +18,8 @@ public class Library {
         loans = new ArrayList<>();
     }
 
-    public void addBook( Book book ) {
-        if (book == null){
+    public void addBook(Book book) {
+        if (book == null) {
             throw new IllegalArgumentException("Book cannot be null");
         }
 
@@ -31,7 +32,7 @@ public class Library {
                 throw new IllegalArgumentException("Book ID already exists");
             }
 
-            if(existingBook.getName().equals(book.getName()) &&
+            if (existingBook.getName().equals(book.getName()) &&
                     existingBook.getAuthor().equals(book.getAuthor())) {
                 throw new IllegalArgumentException("Book already exists");
             }
@@ -44,7 +45,7 @@ public class Library {
         bookCopies.add(bookCopy);
     }
 
-    public void addReader( Reader reader ) {
+    public void addReader(Reader reader) {
         for (Reader existingReader : readers) {
             if (existingReader.getIdReader() == reader.getIdReader()) {
                 throw new IllegalArgumentException("Reader ID already exists");
@@ -162,6 +163,7 @@ public class Library {
 
         throw new IllegalArgumentException("Loan not found");
     }
+
     //dodawanie ksiażki za pomoca ID juz istniejącej ksiazki
     public void addBookCopy(int copyId, int bookId) {
 

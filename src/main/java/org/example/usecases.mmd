@@ -13,7 +13,6 @@ flowchart LR
         UC9(["UC9<br/>Wyświetl wypożyczenia"])
         UC10(["UC10<br/>Wyświetl książki<br/>przypisane do czytelnika"])
         UC0(["UC0<br/>Zakończ program"])
-
         W1(["Zweryfikuj istnienie książki"])
         W2(["Zweryfikuj czytelnika,<br/>egzemplarz i dostępność"])
         W3(["Zweryfikuj istnienie czytelnika"])
@@ -30,14 +29,11 @@ flowchart LR
     Actor --- UC9
     Actor --- UC10
     Actor --- UC0
-
-    UC3  -. "«include»" .-> W1
-    UC4  -. "«include»" .-> W2
-    UC10 -. "«include»" .-> W3
-
-    classDef usecase fill:#F4F8FF,stroke:#3A5A99,color:#000;
-    classDef included fill:#FFF8E6,stroke:#B8860B,color:#000;
-    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC0 usecase;
-    class W1,W2,W3 included;
-
-    style SYS fill:#FFFFFF,stroke:#444444,color:#000;
+    UC3 -. " «include» " .-> W1
+    UC4 -. " «include» " .-> W2
+    UC10 -. " «include» " .-> W3
+    classDef usecase fill: #F4F8FF, stroke: #3A5A99, color: #000;
+    classDef included fill: #FFF8E6, stroke: #B8860B, color: #000;
+class UC1, UC2, UC3, UC4, UC5, UC6, UC7, UC8, UC9, UC10, UC0 usecase;
+class W1,W2, W3 included;
+style SYS fill: #FFFFFF, stroke: #444444, color: #000;
