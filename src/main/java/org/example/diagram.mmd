@@ -1,0 +1,101 @@
+classDiagram
+    direction TB
+
+    class Main {
+        +main(args : String[])$ void
+    }
+
+    class Library {
+        -List~Book~ books
+        -List~BookCopy~ bookCopies
+        -List~Reader~ readers
+        -List~Loan~ loans
+        +Library()
+        +addBook(book : Book) void
+        +addBookCopy(bookCopy : BookCopy) void
+        +addBookCopy(copyId : int, bookId : int) void
+        +addReader(reader : Reader) void
+        +addLoan(loan : Loan) void
+        +borrowBook(loanId : int, readerId : int, bookCopyId : int) void
+        +returnBook(loanId : int) void
+        +assignedUserBooks(readerId : int) void
+        +displayBooks() void
+        +displayBookCopies() void
+        +displayReaders() void
+        +displayLoans() void
+    }
+
+    class Book {
+        -int idBook
+        -String name
+        -String author
+        +Book(idBook : int, name : String, author : String)
+        +getIdBook() int
+        +getName() String
+        +setName(name : String) void
+        +getAuthor() String
+        +setAuthor(author : String) void
+        +toString() String
+    }
+
+    class BookCopy {
+        -int idBookCopy
+        -Book book
+        -boolean available
+        +BookCopy(idBookCopy : int, book : Book, available : boolean)
+        +getIdBookCopy() int
+        +getBook() Book
+        +isAvailable() boolean
+        +setAvailable(available : boolean) void
+        +toString() String
+    }
+
+    class Reader {
+        -int idReader
+        -String firstName
+        -String lastName
+        +Reader(idReader : int, firstName : String, lastName : String)
+        +getIdReader() int
+        +getFirstName() String
+        +setFirstName(firstName : String) void
+        +getLastName() String
+        +setLastName(lastName : String) void
+        +toString() String
+    }
+
+    class Loan {
+        -int idLoan
+        -Reader reader
+        -BookCopy bookCopy
+        -LocalDate borrowDate
+        -LocalDate returnDate
+        +Loan(idLoan : int, reader : Reader, bookCopy : BookCopy, borrowDate : LocalDate)
+        +getIdLoan() int
+        +getReader() Reader
+        +getBookCopy() BookCopy
+        +getBorrowDate() LocalDate
+        +setBorrowDate(borrowDate : LocalDate) void
+        +getReturnDate() LocalDate
+        +setReturnDate(returnDate : LocalDate) void
+        +toString() String
+    }
+
+%% Main korzysta z Library i tworzy obiekty Book oraz Reader
+    Main --> "1" Library : korzysta
+    Main ..> Book : «create»
+    Main ..> Reader : «create»
+
+%% Library zarządza (kompozycja) czterema listami obiektów
+    Library "1" *-- "0..*" Book
+    Library "1" *-- "0..*" BookCopy
+    Library "1" *-- "0..*" Reader
+    Library "1" *-- "0..*" Loan
+
+%% Asocjacje domenowe
+    BookCopy "0..*" --> "1" Book : jest egzemplarzem
+    Loan "0..*" --> "1" Reader : pożycza
+    Loan "0..*" --> "1" BookCopy : dotyczy
+
+%% Library tworzy Loan w borrowBook() i BookCopy w addBookCopy(int,int)
+    Library ..> Loan : «create»
+    Library ..> BookCopy : «create»

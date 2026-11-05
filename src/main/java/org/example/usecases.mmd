@@ -1,0 +1,43 @@
+flowchart LR
+    Actor(("Bibliotekarz<br/>(operator aplikacji)"))
+
+    subgraph SYS["System biblioteczny (aplikacja konsolowa)"]
+        UC1(["UC1<br/>Dodaj książkę"])
+        UC2(["UC2<br/>Dodaj czytelnika"])
+        UC3(["UC3<br/>Dodaj egzemplarz książki"])
+        UC4(["UC4<br/>Wypożycz książkę"])
+        UC5(["UC5<br/>Zwróć książkę"])
+        UC6(["UC6<br/>Wyświetl książki"])
+        UC7(["UC7<br/>Wyświetl egzemplarze"])
+        UC8(["UC8<br/>Wyświetl czytelników"])
+        UC9(["UC9<br/>Wyświetl wypożyczenia"])
+        UC10(["UC10<br/>Wyświetl książki<br/>przypisane do czytelnika"])
+        UC0(["UC0<br/>Zakończ program"])
+
+        W1(["Zweryfikuj istnienie książki"])
+        W2(["Zweryfikuj czytelnika,<br/>egzemplarz i dostępność"])
+        W3(["Zweryfikuj istnienie czytelnika"])
+    end
+
+    Actor --- UC1
+    Actor --- UC2
+    Actor --- UC3
+    Actor --- UC4
+    Actor --- UC5
+    Actor --- UC6
+    Actor --- UC7
+    Actor --- UC8
+    Actor --- UC9
+    Actor --- UC10
+    Actor --- UC0
+
+    UC3  -. "«include»" .-> W1
+    UC4  -. "«include»" .-> W2
+    UC10 -. "«include»" .-> W3
+
+    classDef usecase fill:#F4F8FF,stroke:#3A5A99,color:#000;
+    classDef included fill:#FFF8E6,stroke:#B8860B,color:#000;
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC0 usecase;
+    class W1,W2,W3 included;
+
+    style SYS fill:#FFFFFF,stroke:#444444,color:#000;
